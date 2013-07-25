@@ -15,11 +15,13 @@ end
 
 post '/events/create' do
   event = Event.new(params[:event])
-  if event.valid?
-    event.
+  date = params[:event][:date]
+  #puts "HEY #{date}"
+  if event.valid? && event.valid_date?(date)
     event.save
     redirect to "/"
   else
+    puts "Hey we are here!"
     @errors = event.errors.messages
     erb :event_new
   end
