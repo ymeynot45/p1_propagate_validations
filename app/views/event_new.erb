@@ -1,0 +1,18 @@
+<h1>Make an Event!</h1><br>
+
+<div class="create_box">
+  <% if @errors %>
+    <% @errors.each do |key, error| %>
+      <ul>
+        <li><%=key%>: <%=error.first %></li><br>
+      </ul>
+    <% end %>
+  <% end %>
+  <form id="create_event" method="post" action="/events/create">
+    <label> Organizer_name:<input type="text" name="event[organizer_name]"></label><br>
+    <label> Organizer_email:<input type="text" name="event[organizer_email]"></label><br>
+    <label> Title: <input type="text" name="event[title]"></label><br>
+    <label> Event Date: <input type="date" name="event[date]"></label><br>
+    <input type="submit">
+  </form>
+</div>

@@ -1,5 +1,6 @@
 get '/' do
   @events = Event.all
+  # @time =Chronic.parse '2/10/1985'
   erb :index
 end
 
@@ -9,9 +10,18 @@ get '/events/:id/show' do |id|
 end
 
 get '/events/new' do
-  #TODO IMPLEMENT ME
+  erb :event_new
 end
 
 post '/events/create' do
-  #TODO IMPLEMENT ME
+  event = Event.new(params[:event])
+  if event.valid?
+    event.
+    event.save
+    redirect to "/"
+  else
+    @errors = event.errors.messages
+    erb :event_new
+  end
+
 end
