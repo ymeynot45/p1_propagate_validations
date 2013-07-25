@@ -1,6 +1,10 @@
+#TO DO
+# Set up chronic to invalidate old dates when you create an event.
+# Put said errors into the event.errors.messages
+#
+
 get '/' do
   @events = Event.all
-  # @time =Chronic.parse '2/10/1985'
   erb :index
 end
 
@@ -16,12 +20,10 @@ end
 post '/events/create' do
   event = Event.new(params[:event])
   date = params[:event][:date]
-  #puts "HEY #{date}"
   if event.valid? && event.valid_date?(date)
     event.save
     redirect to "/"
   else
-    puts "Hey we are here!"
     @errors = event.errors.messages
     erb :event_new
   end
