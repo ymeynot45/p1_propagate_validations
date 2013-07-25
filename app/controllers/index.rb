@@ -20,7 +20,7 @@ end
 post '/events/create' do
   event = Event.new(params[:event])
   date = params[:event][:date]
-  if event.valid? && event.valid_date?(date)
+  if event.valid? #&& event.valid_date?(date)
     event.save
     redirect to "/"
   else
